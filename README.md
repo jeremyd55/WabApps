@@ -2,6 +2,12 @@
 
 L'application permet de mettre en lien des guides touristiques particuliers et des voyageurs. L'offre promet de mettre en valeur des lieux plus reculés par rapport à ceux proposés par les grandes agences. 
 
+## TODO
+  
+- [x]  créer logo, push into new Folder 'web'
+- [ ] /Core -> full engine
+- [ ]  form
+
 ## Départ
 
 Dévelopemment d'une web app avec une équipe full stack
