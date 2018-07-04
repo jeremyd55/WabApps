@@ -1,0 +1,14 @@
+#exemple
+#home:
+#    path: /gallery/{type}/{test}/{coucou}{teste}
+#    from: App\Controller\GalleryController::gallery
+#    methods: {GET}
+#    defaults:
+#        type: all
+#        test: all
+#        coucou: all
+#        type: bazard
+#    pattern:
+#        type: \d
+#        test: \w
+#        coucou: \w
