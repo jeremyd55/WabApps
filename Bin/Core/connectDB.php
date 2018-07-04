@@ -30,7 +30,7 @@ Class connectDB {
 
     public function dns()
     {
-        $this->dns = $this->param['DB_CONNECTION'] + ':host=' + $this->param['DB_HOST'] + ';dbname=' + $this->param['DB_DATABASE'];
+        $this->dns = $this->param['DB_CONNECTION'] . ':host=' + $this->param['DB_HOST'] . ';dbname=' . $this->param['DB_DATABASE'];
         return $this;
     }
 
@@ -74,7 +74,7 @@ Class connectDB {
         if(! empty($this->request)) {
             $this->request = null;
         }
-        $this->request = 'SELECT' . $select;
+        $this->request = 'SELECT ' . $select;
         return $this;
     }
 
@@ -83,7 +83,7 @@ Class connectDB {
         if(empty($this->$request)) {
             $this->request = null;
         }
-        $this->request = 'INSERT INTO' . $insert;
+        $this->request = 'INSERT INTO ' . $insert;
         return $this;
     }
 
@@ -92,7 +92,7 @@ Class connectDB {
         if(empty($this->$request)) {
             $this->request = null;
         }
-        $this->request = 'UPDATE' . $update;
+        $this->request = 'UPDATE ' . $update;
         return $this;
     }
 
@@ -101,14 +101,14 @@ Class connectDB {
         if(empty($this->$request)) {
             $this->request = null;
         }
-        $this->request = 'DELETE FROM' . $delete;
+        $this->request = 'DELETE FROM ' . $delete;
         return $this;
     }
 
     public function set($set)
     {
         if(empty($this->request)) {
-            $this->request . 'SET' . $set;
+            $this->request . ' SET ' . $set;
         }
         return $this;
     }
@@ -116,7 +116,7 @@ Class connectDB {
     public function where($where)
     {
         if(empty($this->request)) {
-            $this->request . 'WHERE' . $where;
+            $this->request . ' WHERE ' . $where;
         }
         return $this;
     }
@@ -124,7 +124,7 @@ Class connectDB {
     public function from($from)
     {
         if(empty($this->request)) {
-            $this->request . 'FROM' . $from;
+            $this->request . ' FROM ' . $from;
         }
         return $this;
     }
