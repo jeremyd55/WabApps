@@ -78,8 +78,8 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [PHP](http://php.net/manual/fr/intro-whatis.php) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Bootstrap](https://getbootstrap.com/) - The web style framework used
+* [SASS](https://sass-lang.com/) - Used to generate minimized files
 
 ## Contribution
 
@@ -91,9 +91,9 @@ Pour les versions valables [tags on this repository](https://github.com/your/pro
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **TechnoFuturTIC ** - *Initial work* - [TTIC](http://www.technofuturtic.be/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+Voir aussi les contributeurs [contributors](https://github.com/your/project/contributors) qui ont participés dans ce projet.
 
 ## License
 
