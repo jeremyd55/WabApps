@@ -18,8 +18,6 @@ Class connectDB {
     private $collate = 'utf8_unicode_ci';
     private $dns;
 
-    //"mysql:host=$host;dbname=$dbname;charset=$charset" pour dns
-
     private $options = [
         PDO::ATTR_ERRMODE => PDO :: ERRMODE_EXCEPTION,
         PDO::ATTR_PERSISTENT => false,
@@ -27,8 +25,6 @@ Class connectDB {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES $charset COLLATE $collate"
     ];
-
-    $dbh = new PDO($dns, $userDB, $passDB, $options);
 
     public function __construct(?string $host = null, ?string $dbname = null)
     {
@@ -76,6 +72,7 @@ Class connectDB {
     private function connect($dns, $userDB, $passDB, $options)
     {
         $this->db = new PDO($dns, $userDB, $passDB, $options);
+        return $this;
     }
 
     public function select($select)
