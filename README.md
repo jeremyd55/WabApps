@@ -1,4 +1,4 @@
-# TouristGuild
+# Guild of Tourist
 
 L'application permet de mettre en lien des guides touristiques particuliers et des voyageurs. L'offre promet de mettre en valeur des lieux plus reculés par rapport à ceux proposés par les grandes agences. 
 
