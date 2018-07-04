@@ -93,7 +93,7 @@ Pour les versions valables [tags on this repository](https://github.com/your/pro
 
 * **TechnoFuturTIC ** - *Initial work* - [TTIC](http://www.technofuturtic.be/)
 
-Voir aussi les contributeurs [contributors](https://github.com/your/project/contributors) qui ont participés dans ce projet.
+Voir aussi les contributeurs [contributors](https://github.com/your/project/contributors) qui ont participé dans ce projet.
 
 ## License
 
