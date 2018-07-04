@@ -10,12 +10,6 @@ Class connectDB {
     private $db;
     private $request;
     private $param;
-
-
-    private $userDB = '';
-    private $passDB = '';
-    private $charset = 'utf8';
-    private $collate = 'utf8_unicode_ci';
     private $dns;
 
     private $options = [
