@@ -9,13 +9,13 @@ Class connectDB {
     private $from;
     private $where;
 
-    $userDB = '';
-    $passDB = '';
-    $charset = 'utf8';
-    $collate = 'utf8_unicode_ci';
-    $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+    private $userDB = '';
+    private $passDB = '';
+    private $charset = 'utf8';
+    private $collate = 'utf8_unicode_ci';
+    private $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 
-    $options = [
+    private $options = [
         PDO::ATTR_ERRMODE => PDO :: ERRMODE_EXCEPTION,
         PDO::ATTR_PERSISTENT => false,
         PDO::ATTR_EMULATE_PREPARES => false,
@@ -25,7 +25,6 @@ Class connectDB {
 
     $dbh = new PDO($dsn, $userDB, $passDB, $options);
 
-    ;
     public function __construct(?string $host = null, ?string $dbname = null)
     {
         $this->setHost($host);
@@ -56,9 +55,9 @@ Class connectDB {
         return $this;
     }
 
-    private function connect()
+    public function connect($dsn, $userDB, $passDB, $options)
     {
-        $this->db = new PDO();
+        $this->db = new PDO($dsn, $userDB, $passDB, $options);
     }
 
     public function select($select)
@@ -70,11 +69,29 @@ Class connectDB {
         return $this;
     }
 
+    public function insert($insert)
+    {
+        if(empty($this->$request)) {
+            $this->request = null;
+        }
+        $this->request = 'INSERT INTO' . $insert;
+        return $this;
+    }
+
+    public function set($set)
+    {
+        if(empty($this->request)) {
+            $this->request . 'SET' . $set;
+        }
+        return $this;
+    }
+
     public function where($where)
     {
         if(empty($this->request)) {
             $this->request . 'WHERE' . $where;
         }
+        return $this;
     }
 
     public function from($from)
@@ -82,9 +99,13 @@ Class connectDB {
         if(empty($this->request)) {
             $this->request . 'FROM' . $from;
         }
+        return $this;
     }
 
 
 }
+
+$connect = new connectDB('host', 'dbname')->connect();
+$connect->select([])->where('pseudo')->select();
 
 ?>
