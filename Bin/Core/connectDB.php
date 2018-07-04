@@ -10,15 +10,7 @@ Class connectDB {
     private $db;
     private $request;
     private $param;
-
-
-    private $userDB = '';
-    private $passDB = '';
-    private $charset = 'utf8';
-    private $collate = 'utf8_unicode_ci';
     private $dns;
-
-    //"mysql:host=$host;dbname=$dbname;charset=$charset" pour dns
 
     private $options = [
         PDO::ATTR_ERRMODE => PDO :: ERRMODE_EXCEPTION,
@@ -27,8 +19,6 @@ Class connectDB {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES $charset COLLATE $collate"
     ];
-
-    $dbh = new PDO($dns, $userDB, $passDB, $options);
 
     public function __construct(?string $host = null, ?string $dbname = null)
     {
@@ -40,7 +30,7 @@ Class connectDB {
 
     public function dns()
     {
-        $this->dns = $this->param['DB_CONNECTION'] + ':host=' + $this->param['DB_HOST'] + ';dbname=' + $this->param['DB_DATABASE'];
+        $this->dns = $this->param['DB_CONNECTION'] . ':host=' + $this->param['DB_HOST'] . ';dbname=' . $this->param['DB_DATABASE'];
         return $this;
     }
 
@@ -76,6 +66,7 @@ Class connectDB {
     private function connect($dns, $userDB, $passDB, $options)
     {
         $this->db = new PDO($dns, $userDB, $passDB, $options);
+        return $this;
     }
 
     public function select($select)
@@ -83,7 +74,7 @@ Class connectDB {
         if(! empty($this->request)) {
             $this->request = null;
         }
-        $this->request = 'SELECT' . $select;
+        $this->request = 'SELECT ' . $select;
         return $this;
     }
 
@@ -92,14 +83,32 @@ Class connectDB {
         if(empty($this->$request)) {
             $this->request = null;
         }
-        $this->request = 'INSERT INTO' . $insert;
+        $this->request = 'INSERT INTO ' . $insert;
+        return $this;
+    }
+
+    public function update($update)
+    {
+        if(empty($this->$request)) {
+            $this->request = null;
+        }
+        $this->request = 'UPDATE ' . $update;
+        return $this;
+    }
+
+    public function delete($delete)
+    {
+        if(empty($this->$request)) {
+            $this->request = null;
+        }
+        $this->request = 'DELETE FROM ' . $delete;
         return $this;
     }
 
     public function set($set)
     {
         if(empty($this->request)) {
-            $this->request . 'SET' . $set;
+            $this->request . ' SET ' . $set;
         }
         return $this;
     }
@@ -107,7 +116,7 @@ Class connectDB {
     public function where($where)
     {
         if(empty($this->request)) {
-            $this->request . 'WHERE' . $where;
+            $this->request . ' WHERE ' . $where;
         }
         return $this;
     }
@@ -115,7 +124,7 @@ Class connectDB {
     public function from($from)
     {
         if(empty($this->request)) {
-            $this->request . 'FROM' . $from;
+            $this->request . ' FROM ' . $from;
         }
         return $this;
     }
