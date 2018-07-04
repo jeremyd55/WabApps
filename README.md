@@ -6,7 +6,7 @@ L'application permet de mettre en lien des guides touristiques particuliers et d
   
 - [ ]  créer logo, push into new Folder 'web'
 - [ ] /Core -> full engine
-- [ ]  form
+- [ ]  2 forms : user et guide
 - [ ] créer contenu : profil guide, user 
 - [ ] prendre photos et vidéo de présentation
 
