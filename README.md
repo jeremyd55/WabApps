@@ -7,10 +7,13 @@ L'application permet de mettre en lien des guides touristiques particuliers et d
 - [ ]  créer logo, push into new Folder 'web'
 - [ ] /Core -> full engine
 - [ ]  form
+- [ ] créer contenu : profil guide, user 
+- [ ] prendre photos et vidéo de présentation
 
 ## Départ
 
 Dévelopemment d'une web app avec une équipe full stack
+Création et gestion de comptes Fb et Instagram liés à l'appli
 
 
 ### Prérequis
