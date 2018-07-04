@@ -1,19 +1,24 @@
 <?php
+namespace Framework\Core;
+
+use Framework\Core\Http\{Request, RequestInterface};
 
 Class connectDB {
 
     private $host = null;
     private $dbname = null;
     private $db;
-    private $select;
-    private $from;
-    private $where;
+    private $request;
+    private $param;
+
 
     private $userDB = '';
     private $passDB = '';
     private $charset = 'utf8';
     private $collate = 'utf8_unicode_ci';
-    private $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+    private $dns;
+
+    //"mysql:host=$host;dbname=$dbname;charset=$charset" pour dns
 
     private $options = [
         PDO::ATTR_ERRMODE => PDO :: ERRMODE_EXCEPTION,
@@ -23,13 +28,26 @@ Class connectDB {
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES $charset COLLATE $collate"
     ];
 
-    $dbh = new PDO($dsn, $userDB, $passDB, $options);
+    $dbh = new PDO($dns, $userDB, $passDB, $options);
 
     public function __construct(?string $host = null, ?string $dbname = null)
     {
-        $this->setHost($host);
-        $this->setDbname($dbname);
-        $this->connect();
+        $this->setParam(new Request());
+        $this->setHost($this->param['DB_HOST']);
+        $this->setDbname($this->param['DB_DATABASE']);
+        $this->connect(dns(), $this->param['DB_USERNAME'], $this->param['DB_PASSWORD'], $this->$options);
+    }
+
+    public function dns()
+    {
+        $this->dns = $this->param['DB_CONNECTION'] + ':host=' + $this->param['DB_HOST'] + ';dbname=' + $this->param['DB_DATABASE'];
+        return $this;
+    }
+
+    private function setParam(RequestInteface $request)
+    {
+        $this->param = $request->getEnvironment();
+        return $this;
     }
 
     public function __destruct()
@@ -55,9 +73,9 @@ Class connectDB {
         return $this;
     }
 
-    public function connect($dsn, $userDB, $passDB, $options)
+    private function connect($dns, $userDB, $passDB, $options)
     {
-        $this->db = new PDO($dsn, $userDB, $passDB, $options);
+        $this->db = new PDO($dns, $userDB, $passDB, $options);
     }
 
     public function select($select)
@@ -102,10 +120,6 @@ Class connectDB {
         return $this;
     }
 
-
 }
-
-$connect = new connectDB('host', 'dbname')->connect();
-$connect->select([])->where('pseudo')->select();
 
 ?>
