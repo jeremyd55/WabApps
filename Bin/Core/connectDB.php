@@ -87,6 +87,24 @@ Class connectDB {
         return $this;
     }
 
+    public function update($update)
+    {
+        if(empty($this->$request)) {
+            $this->request = null;
+        }
+        $this->request = 'UPDATE' . $update;
+        return $this;
+    }
+
+    public function delete($delete)
+    {
+        if(empty($this->$request)) {
+            $this->request = null;
+        }
+        $this->request = 'DELETE FROM' . $delete;
+        return $this;
+    }
+
     public function set($set)
     {
         if(empty($this->request)) {
