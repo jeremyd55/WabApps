@@ -13,4 +13,6 @@ interface RequestInterface
     public function getEnvironment(string $key = null);
 
     public function getMethod();
+
+    public function getUri();
 }

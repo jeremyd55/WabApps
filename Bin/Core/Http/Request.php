@@ -85,6 +85,11 @@ class Request implements RequestInterface
         return $this->method;
     }
 
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
 
 
 }

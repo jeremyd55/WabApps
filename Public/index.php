@@ -18,6 +18,4 @@ if(! class_exists(Autoload::class)) {
 
 (new Autoload())->load(['../.env']);
 
-
-
-$db = new Framework\Core\connectDB();
+new \Framework\Core\Route\Container();
