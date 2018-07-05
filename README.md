@@ -4,7 +4,7 @@ L'application permet de mettre en lien des guides touristiques particuliers et d
 
 ## TODO
   
-- [ ]  créer logo, push into new Folder 'web'
+- [X]  créer logo, push into new Folder 'web'
 - [ ] /Core -> full engine
 - [ ] form user
 - [ ] form guide
