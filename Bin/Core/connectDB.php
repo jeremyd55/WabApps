@@ -4,7 +4,7 @@ namespace Framework\Core;
 use Framework\Core\Http\{Request, RequestInterface};
 use PDO;
 
-Class connectDB {
+Class connectDB implements connectDBInterface {
 
     private $db;
     private $request;
