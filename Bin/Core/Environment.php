@@ -1,4 +1,4 @@
-<?php namespace Framework;
+<?php namespace Framework\Core;
 
 
 final class Environment
@@ -24,10 +24,12 @@ final class Environment
                 continue;
             }
             $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
             $envKey[$key] = true;
         }
         if($envKey) {
             $envKey = implode(',', array_keys($envKey));
+            $_SERVER['FRAMEWORK'] = $envKey;
             $_ENV['FRAMEWORK'] = $envKey;
         }
     }
