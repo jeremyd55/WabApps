@@ -51,29 +51,21 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Lancer les test
 
-Explain how to run the automated tests for this system
+Expliquez les procédures de tests
 
-### Break down into end to end tests
+### Détails des tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+Quels sont les test et quels sont les outputs 
 
 ```
 Give an example
 ```
 
-## Deployment
+## Déploiement
 
-Add additional notes about how to deploy this on a live system
+Notes additionnels pour le déploiement 
 
 ## Built With
 
