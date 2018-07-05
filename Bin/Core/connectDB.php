@@ -2,39 +2,27 @@
 namespace Framework\Core;
 
 use Framework\Core\Http\{Request, RequestInterface};
+use PDO;
 
 Class connectDB {
 
-    private $host = null;
-    private $dbname = null;
     private $db;
     private $request;
     private $param;
-    private $dns;
-
-    private $options = [
-        PDO::ATTR_ERRMODE => PDO :: ERRMODE_EXCEPTION,
-        PDO::ATTR_PERSISTENT => false,
-        PDO::ATTR_EMULATE_PREPARES => false,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES $charset COLLATE $collate"
-    ];
+    private $result;
 
     public function __construct(?string $host = null, ?string $dbname = null)
     {
         $this->setParam(new Request());
-        $this->setHost($this->param['DB_HOST']);
-        $this->setDbname($this->param['DB_DATABASE']);
-        $this->connect(dns(), $this->param['DB_USERNAME'], $this->param['DB_PASSWORD'], $this->$options);
+        $this->connect();
     }
 
-    public function dns()
+    private function dns()
     {
-        $this->dns = $this->param['DB_CONNECTION'] . ':host=' + $this->param['DB_HOST'] . ';dbname=' . $this->param['DB_DATABASE'];
-        return $this;
+        return $this->param['DB_CONNECTION'] . ':host=' . $this->param['DB_HOST'] . ';dbname=' . $this->param['DB_DATABASE'];
     }
 
-    private function setParam(RequestInteface $request)
+    private function setParam(RequestInterface $request)
     {
         $this->param = $request->getEnvironment();
         return $this;
@@ -47,25 +35,14 @@ Class connectDB {
         }
     }
 
-    private function setHost(?string $host = null)
+    private function connect()
     {
-        if(!empty($host)) {
-            $this->host = $host;
+        try{
+            $this->db = new PDO($this->dns(),$this->param['DB_USERNAME'], $this->param['DB_PASSWORD']);
+        } catch(PDOExeption $e) {
+            throw new \RumtimeException($e->getMessage());
         }
-        return $this;
-    }
-
-    private function setDbname(?string $dbname = null)
-    {
-        if(!empty($dbname)) {
-            $this->dbname = $dbname;
-        }
-        return $this;
-    }
-
-    private function connect($dns, $userDB, $passDB, $options)
-    {
-        $this->db = new PDO($dns, $userDB, $passDB, $options);
+        
         return $this;
     }
 
@@ -75,15 +52,6 @@ Class connectDB {
             $this->request = null;
         }
         $this->request = 'SELECT ' . $select;
-        return $this;
-    }
-
-    public function insert($insert)
-    {
-        if(empty($this->$request)) {
-            $this->request = null;
-        }
-        $this->request = 'INSERT INTO ' . $insert;
         return $this;
     }
 
@@ -105,6 +73,15 @@ Class connectDB {
         return $this;
     }
 
+    public function insert($insert,$values)
+    {
+        if(empty($this->request)){
+            $this->request = null;
+        }
+        $this->request = 'INSERT INTO ' . $insert . ' VALUES ' . $values;
+        return $this;
+    }
+
     public function set($set)
     {
         if(empty($this->request)) {
@@ -123,10 +100,28 @@ Class connectDB {
 
     public function from($from)
     {
-        if(empty($this->request)) {
-            $this->request . ' FROM ' . $from;
+        if(!empty($this->request)) {
+            $this->request = $this->request . ' FROM ' . $from;
         }
         return $this;
+    }
+
+    public function executePDO()
+    {
+        $this->result = $this->db->prepare($this->request)->execute();
+        return $this;
+    }
+
+    public function result(): bool
+    {
+        return $this->result;
+    }
+
+    public function query()
+    {
+        $query = $this->db->prepare($this->request);
+        var_dump($query);
+        $query->fetch();
     }
 
 }
