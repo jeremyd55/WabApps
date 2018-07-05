@@ -63,7 +63,7 @@ Expliquez les procédures de tests
 Quels sont les test et quels sont les outputs 
 
 ```
-Give an example
+Donner un exemple
 ```
 
 ## Déploiement
@@ -84,10 +84,10 @@ Notes additionnels pour le déploiement
 
 Pour les versions valables [tags on this repository](https://github.com/your/project/tags). 
 
-## Authors
+## Auteurs
 
 * **TechnoFuturTIC ** - *Initial work* - [TTIC](http://www.technofuturtic.be/)
 
-Voir aussi les contributeurs [contributors](https://github.com/your/project/contributors) qui ont participé dans ce projet.
+Voir aussi les contributeurs [contributeurs](https://github.com/jeremyd55/WabApps/graphs/contributors) qui ont participé dans ce projet.
 
 
