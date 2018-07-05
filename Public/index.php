@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-use Framework\Autoload;
+use Framework\Core\Autoload;
 
-$required = '../Bin/Autoload.php';
+$required = '../Bin/Core/Autoload.php';
 
 if(! file_exists($required)) {
     throw new \RuntimeException("Not found $required");
@@ -18,3 +18,6 @@ if(! class_exists(Autoload::class)) {
 
 (new Autoload())->load(['../.env']);
 
+
+
+$db = new Framework\Core\connectDB();
