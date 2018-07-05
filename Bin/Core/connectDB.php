@@ -92,8 +92,8 @@ Class connectDB {
 
     public function where($where)
     {
-        if(empty($this->request)) {
-            $this->request . ' WHERE ' . $where;
+        if(!empty($this->request)) {
+            $this->request = $this->request . ' WHERE ' . $where;
         }
         return $this;
     }
@@ -106,9 +106,10 @@ Class connectDB {
         return $this;
     }
 
-    public function executePDO()
+    public function query()
     {
-        $this->result = $this->db->prepare($this->request)->execute();
+        $this->result = $this->db->prepare($this->request);
+        $this->result->execute();
         return $this;
     }
 
@@ -117,11 +118,9 @@ Class connectDB {
         return $this->result;
     }
 
-    public function query()
+    public function print()
     {
-        $query = $this->db->prepare($this->request);
-        var_dump($query);
-        $query->fetch();
+        return $this->result->fetchAll();
     }
 
 }
