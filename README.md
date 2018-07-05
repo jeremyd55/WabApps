@@ -1,4 +1,4 @@
-# TouristGuild
+# Guild of Tourist
 
 L'application permet de mettre en lien des guides touristiques particuliers et des voyageurs. L'offre promet de mettre en valeur des lieux plus reculés par rapport à ceux proposés par les grandes agences. 
 
@@ -6,11 +6,14 @@ L'application permet de mettre en lien des guides touristiques particuliers et d
   
 - [ ]  créer logo, push into new Folder 'web'
 - [ ] /Core -> full engine
-- [ ]  form
+- [ ]  2 forms : user et guide
+- [ ] créer contenu : profil guide, user 
+- [ ] prendre photos et vidéo de présentation
 
 ## Départ
 
 Dévelopemment d'une web app avec une équipe full stack
+Création et gestion de comptes Fb et Instagram liés à l'appli
 
 
 ### Prérequis
