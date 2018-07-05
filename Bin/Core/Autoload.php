@@ -1,4 +1,4 @@
-<?php namespace Framework;
+<?php namespace Framework\Core;
 
 
 class Autoload
@@ -31,6 +31,7 @@ class Autoload
 
     private function loadClass($class)
     {
+
         $prefix = $class;
         while(false !== $pos = strrpos($prefix, '\\')) {
 
@@ -49,6 +50,7 @@ class Autoload
 
     private function fileLoad($prefix, $relative)
     {
+
         $prefix = substr($prefix, 0, -1);
         if($prefix !== __NAMESPACE__) {
             return false;
